@@ -1,0 +1,15 @@
+[project]
+name = "qcutils"
+version = "0.1.0"
+description = "Utility functions, including the FastRMSD, FastAlign, and FastRenumber algorithms, a Periodic Table, and physical constants for quantum chemistry."
+readme = "README.md"
+authors = [{ name = "Colton Hicks", email = "github@coltonhicks.com" }]
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+qcutils = "qcutils:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
