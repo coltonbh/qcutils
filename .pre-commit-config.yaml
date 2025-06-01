@@ -32,7 +32,7 @@ repos:
     rev: v1.16.10
     hooks:
       - id: typos
-        exclude: '(^src/qcutils/pt_data/|^tests/test_pt\.py$)'
+        exclude: '(^src/qcinf/pt_data/|^tests/test_pt\.py$)'
 
   - repo: local
     hooks:

@@ -1,7 +1,7 @@
 [project]
-name = "qcutils"
+name = "qcinf"
 version = "0.1.0"
-description = "Cheminformatics algorithms using standardized qcio data structures."
+description = "Cheminformatics algorithms and structure utilities using standardized qcio data structures."
 readme = "README.md"
 authors = [{ name = "Colton Hicks", email = "github@coltonhicks.com" }]
 requires-python = ">=3.9"
@@ -27,11 +27,11 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/coltonbh/qcutils"
-Source = "https://github.com/coltonbh/qcutils"
-Changelog = "https://github.com/coltonbh/qcutils/blob/master/CHANGELOG.md"
-"Bug Tracker" = "https://github.com/coltonbh/qcutils/issues"
-repository = "https://github.com/coltonbh/qcutils"
+Homepage = "https://github.com/coltonbh/qcinf"
+Source = "https://github.com/coltonbh/qcinf"
+Changelog = "https://github.com/coltonbh/qcinf/blob/master/CHANGELOG.md"
+"Bug Tracker" = "https://github.com/coltonbh/qcinf/issues"
+repository = "https://github.com/coltonbh/qcinf"
 
 
 [dependency-groups]
@@ -61,7 +61,7 @@ target-version = "py39"
 
 
 [tool.ruff.lint]
-isort = { known-first-party = ["qcutils", "tests"] }
+isort = { known-first-party = ["qcinf", "tests"] }
 select = ["I", "F401"]
 
 [tool.mypy]

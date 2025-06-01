@@ -4,7 +4,7 @@ from qcconst import constants
 from qcconst.constants import ANGSTROM_TO_BOHR
 from qcio import ConformerSearchResults, Structure
 
-from qcutils import align, filter_conformers, rmsd
+from qcinf import align, filter_conformers, rmsd
 
 
 def test_rmsd_identical_structures():

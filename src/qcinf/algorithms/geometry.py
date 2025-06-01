@@ -4,7 +4,7 @@ from typing import Callable
 
 from qcio import ConformerSearchResults, Structure
 
-from qcutils._backends import rdkit
+from qcinf._backends import rdkit
 
 _RMSD_BACKEND_MAP: dict[str, Callable[..., float]] = {
     "rdkit": rdkit._rmsd_rdkit,
@@ -27,7 +27,7 @@ def rmsd(
         **kwargs: Backend-specific additional keywords to pass to the RMSD calculation
             function. This can include options like 'symmetry' for symmetry-based RMSD
             calculations. The specific options depend on the backend used. See
-            [qcutils._backends.<backend>._rmsd_<backend>] for details.
+            [qcinf._backends.<backend>._rmsd_<backend>] for details.
 
     Returns:
         The RMSD value between the two structures.
@@ -95,7 +95,7 @@ def filter_conformers(
         **rmsd_kwargs: Additional keyword arguments to pass to the RMSD calculation
             function. This can include options like 'symmetry' for symmetry-based RMSD
             calculations. The specific options depend on the backend used. See
-            [qcutils._backends.<backend>._rmsd_<backend>] for details.
+            [qcinf._backends.<backend>._rmsd_<backend>] for details.
 
     Returns:
         A new ConformerSearchResults object containing only the conformers that
