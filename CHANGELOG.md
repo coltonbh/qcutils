@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [unreleased]
 
+### Added
+
+- `filter_conformers_indices` function to better serve the existing requirements of `qcio.view` setup.
+
 ## [0.1.0] - 2025-06-01
 
 ### Added
