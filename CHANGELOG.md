@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [unreleased]
 
+## [0.1.1] - 2025-06-01
+
 ### Added
 
 - `filter_conformers_indices` function to better serve the existing requirements of `qcio.view` setup.
@@ -17,5 +19,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Setup all DevOps workflows and basic package setup.
 - Copied over all cheminformatics functions (e.g., `rmsd`, `align`, `filter_conformers` (formerly `ConformerSearchResults.conformers_filtered()`), `Structure.from_smiles()`, `Structure.to_smiles()`, etc.) from `qcio` into this repo.
 
-[unreleased]: https://github.com/coltonbh/qcinf/compare/0.1.0...HEAD
+[unreleased]: https://github.com/coltonbh/qcinf/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/coltonbh/qcinf/releases/tag/0.1.1
 [0.1.0]: https://github.com/coltonbh/qcinf/releases/tag/0.1.0
