@@ -4,7 +4,7 @@ from typing import Any, Callable, Union
 
 from qcio import Structure
 
-from qcutils._backends import openbabel, rdkit
+from qcinf._backends import openbabel, rdkit
 
 _SMILES_TO_STRUCTURE_BACKENDS: dict[str, Callable[..., Structure]] = {
     "rdkit": rdkit._smiles_to_structure_rdkit,
@@ -63,7 +63,7 @@ def structure_to_smiles(
             Defaults to 'rdkit'.
         hydrogens: If True, include explicit hydrogens in the SMILES string.
         options: A dictionary of backend-specific keywords.  See
-            `qcutils._backends.<backend>._structure_to_smiles` for details.
+            `qcinf._backends.<backend>._structure_to_smiles` for details.
 
     Returns:
         Canonical SMILES str.

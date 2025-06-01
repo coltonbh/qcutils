@@ -2,7 +2,7 @@ import pytest
 
 pytest.importorskip("openbabel")  # tries `import openbabel`
 
-from qcutils._backends.openbabel import (
+from qcinf._backends.openbabel import (
     _smiles_to_structure_ob,
     _structure_to_smiles_ob,
 )

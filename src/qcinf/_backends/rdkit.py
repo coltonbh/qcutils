@@ -1,4 +1,4 @@
-"""RDKit backend (wrapper functions) for QCUtils."""
+"""RDKit backend (wrapper functions) for qcinf."""
 
 import functools
 from collections import Counter
@@ -36,8 +36,8 @@ def requires_rdkit(func: Callable[P, R]) -> Callable[P, R]:
         if _RDKIT_ERR is not None:
             raise ModuleNotFoundError(
                 "Optional dependency 'rdkit' is not installed. "
-                "Install with: python -m pip install 'qcutils[rdkit]' or "
-                "python -m pip install 'qcutils[all]'."
+                "Install with: python -m pip install 'qcinf[rdkit]' or "
+                "python -m pip install 'qcinf[all]'."
             ) from _RDKIT_ERR
         return func(*args, **kwargs)
 

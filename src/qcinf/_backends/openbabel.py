@@ -1,4 +1,4 @@
-"""Open Babel backend (wrapper functions) for QCUtils."""
+"""Open Babel backend (wrapper functions) for qcinf."""
 
 import functools
 from typing import Callable, TypeVar, Union
@@ -33,8 +33,8 @@ def requires_openbabel(func: Callable[P, R]) -> Callable[P, R]:
             raise ModuleNotFoundError(
                 "Optional dependency 'openbabel' is not installed. "
                 "Install with one of:\n"
-                "    python -m pip install 'qcutils[openbabel]'\n"
-                "    python -m pip install 'qcutils[all]'"
+                "    python -m pip install 'qcinf[openbabel]'\n"
+                "    python -m pip install 'qcinf[all]'"
             ) from _OB_ERR
         return func(*args, **kwargs)
 
