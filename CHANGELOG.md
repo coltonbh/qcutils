@@ -6,10 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [unreleased]
 
+## [0.1.0] - 2025-05-31
+
 ### Added
 
 - Setup all DevOps workflows and basic package setup.
 - Copied over all cheminformatics functions (e.g., `rmsd`, `align`, `filter_conformers` (formerly `ConformerSearchResults.conformers_filtered()`), `Structure.from_smiles()`, `Structure.to_smiles()`, etc.) from `qcio` into this repo.
 
 [unreleased]: https://github.com/coltonbh/qcutils/compare/0.1.0...HEAD
+[0.1.0]: https://github.com/coltonbh/qcutils/releases/tag/0.1.0
 
