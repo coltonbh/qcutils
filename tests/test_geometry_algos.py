@@ -4,7 +4,7 @@ from qcconst import constants
 from qcconst.constants import ANGSTROM_TO_BOHR
 from qcio import ConformerSearchResults, Structure
 
-from qcinf import align, filter_conformers, rmsd
+from qcinf import align, filter_conformers_indices, rmsd
 
 
 def test_rmsd_identical_structures():
@@ -278,14 +278,14 @@ def test_align_large_molecule():
 def test_conformers_filtered(test_data_dir):
     # Catalyst/Na+ conformer search
     csr = ConformerSearchResults.open(test_data_dir / "conf_search.json")
-    filtered_csr = filter_conformers(
-        csr, backend="rdkit", threshold=0.47 * constants.ANGSTROM_TO_BOHR
+    keep_indices = filter_conformers_indices(
+        csr.conformers, backend="rdkit", threshold=0.47 * constants.ANGSTROM_TO_BOHR
     )
-    assert len(filtered_csr.conformers) == 6
-    selected = [0, 5, 7, 8, 9, 10]
-    for i, conf in enumerate(filtered_csr.conformers):
-        assert conf == csr.conformers[selected[i]]
-        assert (
-            filtered_csr.conformer_energies[i]
-            == csr.conformer_energies_relative[selected[i]]
-        )
+    assert len(keep_indices) == 6
+    assert keep_indices == [0, 5, 7, 8, 9, 10]
+    # for i, conf in enumerate(keep_indices.conformers):
+    #     assert conf == csr.conformers[selected[i]]
+    #     assert (
+    #         keep_indices.conformer_energies[i]
+    #         == csr.conformer_energies_relative[selected[i]]
+    #     )

@@ -2,7 +2,7 @@
 
 from typing import Callable
 
-from qcio import ConformerSearchResults, Structure
+from qcio import Structure
 
 from qcinf._backends import rdkit
 
@@ -78,37 +78,35 @@ def align(
     return fn(struct, refstruct, symmetry=symmetry, **kwargs)
 
 
-def filter_conformers(
-    csr: ConformerSearchResults,
-    *,
-    backend: str = "rdkit",
+def filter_conformers_indices(
+    conformers: list[Structure],
     threshold: float = 1.0,
+    backend: str = "rdkit",
     **rmsd_kwargs,
-) -> ConformerSearchResults:
+) -> list[int]:
     """Filter conformers based on RMSD threshold.
 
     Args:
-        csr: The ConformerSearchResults object to filter.
-        backend: The backend to use for the RMSD calculation. Can be 'rdkit'.
+        conformers: A list of Structure objects to filter
         threshold: The RMSD threshold for filtering in Bohr. Defaults to 1.0 Bohr
             (0.53 Angstrom).
+        backend: The backend to use for the RMSD calculation. Can be 'rdkit'.
         **rmsd_kwargs: Additional keyword arguments to pass to the RMSD calculation
             function. This can include options like 'symmetry' for symmetry-based RMSD
             calculations. The specific options depend on the backend used. See
             [qcinf._backends.<backend>._rmsd_<backend>] for details.
 
     Returns:
-        A new ConformerSearchResults object containing only the conformers that
-        meet the RMSD threshold.
+        List of conformers indices that meet the RMSD threshold.
     """
     filtered = set()
-    for i in range(len(csr.conformers)):
+    for i in range(len(conformers)):
         if i not in filtered:
-            for j in range(i + 1, len(csr.conformers)):
+            for j in range(i + 1, len(conformers)):
                 if (
                     rmsd(
-                        csr.conformers[i],
-                        csr.conformers[j],
+                        conformers[i],
+                        conformers[j],
                         backend=backend,
                         **rmsd_kwargs,
                     )
@@ -116,8 +114,31 @@ def filter_conformers(
                 ):
                     filtered.add(j)
 
-    keep_indices = [i for i in range(len(csr.conformers)) if i not in filtered]
-    return ConformerSearchResults(
-        conformers=[csr.conformers[i] for i in keep_indices],
-        conformer_energies=csr.conformer_energies_relative[keep_indices],
+    return [i for i in range(len(conformers)) if i not in filtered]
+
+
+def filter_conformers(
+    conformers: list[Structure],
+    threshold: float = 1.0,
+    backend: str = "rdkit",
+    **rmsd_kwargs,
+) -> list[Structure]:
+    """Filter conformers based on RMSD threshold.
+
+    Args:
+        conformers: A list of Structure objects to filter
+        threshold: The RMSD threshold for filtering in Bohr. Defaults to 1.0 Bohr
+            (0.53 Angstrom).
+        backend: The backend to use for the RMSD calculation. Can be 'rdkit'.
+        **rmsd_kwargs: Additional keyword arguments to pass to the RMSD calculation
+            function. This can include options like 'symmetry' for symmetry-based RMSD
+            calculations. The specific options depend on the backend used. See
+            [qcinf._backends.<backend>._rmsd_<backend>] for details.
+
+    Returns:
+        A list of filtered conformers that meet the RMSD threshold.
+    """
+    keep_indices = filter_conformers_indices(
+        conformers, threshold=threshold, backend=backend, **rmsd_kwargs
     )
+    return [conformers[i] for i in keep_indices]
